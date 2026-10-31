@@ -1,0 +1,16 @@
+# Optional: PostgreSQL via Docker instead of `npm run db:local`.
+#   docker compose up -d
+#   DATABASE_URL="postgresql://kazi:kazi@localhost:5433/kazi"
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: kazi
+      POSTGRES_PASSWORD: kazi
+      POSTGRES_DB: kazi
+    ports:
+      - "5433:5432"
+    volumes:
+      - kazi-pg:/var/lib/postgresql/data
+volumes:
+  kazi-pg:

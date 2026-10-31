@@ -1,0 +1,48 @@
+import {
+  BarChart3,
+  Bell,
+  BellRing,
+  Bookmark,
+  BookOpen,
+  Briefcase,
+  Building2,
+  FileText,
+  Flag,
+  FolderKanban,
+  LayoutDashboard,
+  ListChecks,
+  Megaphone,
+  MessageSquare,
+  ScrollText,
+  Settings,
+  ShieldCheck,
+  Tags,
+  User,
+  Users,
+} from "lucide-react";
+
+export const NAV_ICONS = {
+  overview: LayoutDashboard,
+  applications: FileText,
+  saved: Bookmark,
+  profile: User,
+  alerts: BellRing,
+  messages: MessageSquare,
+  notifications: Bell,
+  settings: Settings,
+  jobs: Briefcase,
+  pipeline: FolderKanban,
+  company: Building2,
+  users: Users,
+  verification: ShieldCheck,
+  moderation: ListChecks,
+  reports: Flag,
+  taxonomy: Tags,
+  content: BookOpen,
+  announcements: Megaphone,
+  analytics: BarChart3,
+  audit: ScrollText,
+} as const;
+
+export type NavIcon = keyof typeof NAV_ICONS;
+export type NavItem = { href: string; label: string; icon: NavIcon; badge?: number; mobile?: boolean; exact?: boolean };

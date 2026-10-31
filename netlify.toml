@@ -1,0 +1,10 @@
+# Netlify deploys Next.js with its OpenNext adapter (auto-installed; don't pin it).
+# Environment variables (DATABASE_URL, DIRECT_URL, AUTH_SECRET, …) are set in the Netlify UI or CLI,
+# never in this file. See DEPLOYMENT.md → "Prototype on Netlify + Neon".
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"

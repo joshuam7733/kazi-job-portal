@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --canvas: #f6f7f4;
+  --surface: #ffffff;
+  --surface-2: #eef1ec;
+  --ink: #0f1b2d;
+  --ink-contrast: #ffffff;
+  --muted: #566170;
+  --line: #e1e5df;
+  --line-strong: #c9cfc7;
+  --accent: #0e7c58;
+  --accent-hover: #0a6b4b;
+  --accent-soft: #e2f3eb;
+  --accent-ink: #0a5c41;
+  --sun: #f2b544;
+  --sun-soft: #fdf1d6;
+  --danger: #c2410c;
+  --danger-soft: #fdebe1;
+  --info: #2557d6;
+  --info-soft: #e5ecfc;
+  --shadow-overlay: 0 12px 40px -12px rgb(15 27 45 / 0.25), 0 2px 6px rgb(15 27 45 / 0.06);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #0d1626;
+  --surface: #132036;
+  --surface-2: #1a2943;
+  --ink: #e9eef4;
+  --ink-contrast: #0d1626;
+  --muted: #9aa8bc;
+  --line: #25344d;
+  --line-strong: #34476a;
+  --accent: #3ccb8c;
+  --accent-hover: #5cd9a1;
+  --accent-soft: #12382c;
+  --accent-ink: #7fe3b6;
+  --sun: #f2b544;
+  --sun-soft: #3b2f14;
+  --danger: #fb8a5a;
+  --danger-soft: #3d1d12;
+  --info: #8aa8ff;
+  --info-soft: #1c2b52;
+  --shadow-overlay: 0 16px 48px -12px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-contrast: var(--ink-contrast);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-sun: var(--sun);
+  --color-sun-soft: var(--sun-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --radius-control: 10px;
+  --radius-card: 14px;
+  --radius-panel: 20px;
+  --shadow-overlay: var(--shadow-overlay);
+  --ease-kazi: var(--ease);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  input, select, textarea, button {
+    font: inherit;
+  }
+  [type="search"]::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility container-page {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (width >= 768px) {
+    padding-inline: 24px;
+  }
+  @media (width >= 1024px) {
+    padding-inline: 32px;
+  }
+}
+
+/* Skeleton shimmer */
+@keyframes kazi-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes kazi-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes kazi-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+}
+@keyframes kazi-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes kazi-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+/* Homepage hero: cards settle into a loose stack once on load. */
+.hero-card {
+  transform: translate(var(--x), var(--y)) rotate(var(--r));
+  animation: kazi-hero-settle 600ms var(--ease) both;
+}
+@keyframes kazi-hero-settle {
+  from {
+    opacity: 0;
+    transform: translate(var(--x), calc(var(--y) + 40px)) rotate(0deg);
+  }
+}
+.hero-count {
+  animation: kazi-pop-in 400ms var(--ease) 700ms both;
+}
+
+.animate-overlay {
+  animation: kazi-fade-in 200ms var(--ease);
+}
+.animate-dialog {
+  animation: kazi-pop-in 200ms var(--ease);
+}
+.animate-sheet {
+  animation: kazi-sheet-in 260ms var(--ease);
+}
+.animate-drawer {
+  animation: kazi-drawer-in 260ms var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
