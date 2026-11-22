@@ -40,7 +40,7 @@ const nextConfig: NextConfig = {
           { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
           ...(isDev ? [] : [{ key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" }]),
           // Prototype deployments are never indexed (see src/lib/demo.ts).
-          ...(process.env.DEMO_MODE === "true" ? [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] : []),
+          ...((process.env.DEMO_MODE ? process.env.DEMO_MODE === "true" : Boolean(process.env.VERCEL)) ? [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] : []),
         ],
       },
     ];

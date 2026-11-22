@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "regions": ["fra1"],
+  "buildCommand": "prisma generate && prisma migrate deploy && tsx scripts/seed-if-empty.ts && next build",
+  "crons": [{ "path": "/api/cron/job-alerts", "schedule": "0 6 * * *" }]
+}

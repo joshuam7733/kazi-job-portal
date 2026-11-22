@@ -53,7 +53,7 @@ function samplePdf(name: string) {
 }
 
 async function writeUpload(key: string, data: Buffer) {
-  if (process.env.STORAGE_DRIVER === "database") {
+  if (process.env.STORAGE_DRIVER === "database" || (!process.env.STORAGE_DRIVER && process.env.VERCEL)) {
     await db.fileBlob.upsert({ where: { key }, create: { key, data: new Uint8Array(data) }, update: { data: new Uint8Array(data) } });
     return;
   }

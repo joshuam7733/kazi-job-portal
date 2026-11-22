@@ -29,7 +29,8 @@ export function initials(name?: string | null) {
 }
 
 export function absoluteUrl(path = "/") {
-  const base = (process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined;
+  const base = (process.env.NEXT_PUBLIC_APP_URL ?? vercelUrl ?? "http://localhost:3000").replace(/\/$/, "");
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 

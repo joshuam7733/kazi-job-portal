@@ -1,11 +1,13 @@
 import type { NextAuthConfig } from "next-auth";
 import type { AdminRole, Role } from "@prisma/client";
+import { authSecret } from "@/lib/auth-secret";
 
 /**
  * Edge-safe Auth.js configuration shared by the proxy (route protection) and the full server config.
  * Must not import Prisma or Node-only modules.
  */
 export const authConfig = {
+  secret: authSecret,
   pages: { signIn: "/signin", error: "/signin" },
   session: { strategy: "jwt", maxAge: 60 * 60 * 24 * 14 },
   providers: [],
