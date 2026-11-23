@@ -1,14 +1,15 @@
 # Never upload local data, tools, builds or secrets when deploying with the Vercel CLI.
-node_modules
-.next
-.data
-.tools
-storage
-test-results
-playwright-report
-coverage
-.claude
-.env
-.env.*
-!.env.example
+# Leading slashes anchor each entry to the project root (so src/lib/storage is NOT excluded).
+/node_modules
+/.next
+/.data
+/.tools
+/storage
+/test-results
+/playwright-report
+/coverage
+/.claude
+/.env
+/.env.*
+!/.env.example
 *.log
